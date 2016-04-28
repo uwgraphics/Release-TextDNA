@@ -1,0 +1,1 @@
+cat gfx.js, grid.js, init.js, localseries.js, region.js, render.js, textures.js, util.js > dist/gfx.js

@@ -1,0 +1,318 @@
+@charset "utf-8";
+/* CSS Document */
+
+#filter {
+  margin-top: 5px;
+}
+#filter {
+  margin-top: 5px;
+}
+body, html{
+	height: 100%;
+	font-family:Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+canvas, svg {
+  position: absolute;
+  float: right;
+}
+
+#container {
+	background: white;
+  position: absolute;
+  left:312px;
+  top:0px;
+	width: calc(100% - 312px);
+	height: 90%;
+	float: right;
+  z-index:0;
+}
+
+.hidden {
+  display: none;
+}
+
+#widgets {
+	float: left;
+	display: inline;
+	width:175px;
+  height: 100%;
+  background-color: rgb(25, 25, 25);
+  color:rgb(200,200,200);
+  font-family:"Open Sans",sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+#search {
+  width: 170px;
+}
+
+select {
+  border-radius: 2px;
+}
+
+
+#histogram-container { 
+  position: relative;
+  top:-20px;
+}
+
+#histogram-container > canvas{ 
+  position: relative;
+  top:-10px;
+}
+#histogram-background {
+  background-color: white;
+}
+#widgets canvas {
+  margin: 10px 7px;
+}
+
+select {
+	width: 100%;
+}
+
+#colorlegend-container {
+  width: 100%;
+  height:100px;
+  padding: 0px;
+}
+
+#colorlegend-container > canvas {
+  position: relative;
+  left:10px;
+}
+
+
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: auto;                  
+  height: auto;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+/*temp css*/
+#words {
+  width:100%;
+  height:400px;
+  overflow: scroll;
+}
+
+*{
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sequencelist {
+  padding-left: 2px;
+  width: 125px;
+  height:100%;
+  position: absolute;
+  left:182px;
+  top:0px;
+  font-size: 10px;
+  background-color: rgb(243, 243, 243);
+  height: 100%;
+  border-right:  2px solid rgb(200, 200, 200);
+  color:rgb(50,50,50);
+  font-family:"Open Sans",sans-serif;
+
+}
+
+.sequencelist ul li {
+
+}
+
+.contextmenu {
+  display: none;
+  position: absolute;
+  top:0px;
+  left:0px;
+  background-color: white;
+  z-index:3
+}
+.contextmenu ul {
+  margin: 0px;
+  padding: 4px 4px;
+  list-style-type: none;
+  font-size: 13px;
+  border:solid 1px rgb(200, 200, 200);
+}
+
+.contextmenu ul li:hover{
+  background-color: rgb(230, 230,230);
+}
+
+.contextmenu.active {
+  display: block;
+}
+
+
+#worddisplay {
+  display: none;
+  z-index:10;
+}
+
+#worddisplay.active {
+  display: block;
+}
+
+#wordlist li {
+  margin-left: 5px;
+}
+#worddisplaybg {
+  position: absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .8;
+}
+#mark-canvas {
+  pointer-events:none;
+}
+
+#worddisplay #wordcontainer{
+      position: absolute;
+      width: 800px;
+      height:400px;
+      top:50%;
+      left:50%;
+      margin:-200px 0 0 -400px;
+      background-color: white;
+}
+
+#wordcontainer #seqlist {
+  width: 200px;
+  height:350px;
+  position: absolute;
+  top:10px;
+  left:20px;
+  background-color: rgb(230, 230,230);
+  list-style-type: none;
+  padding: 4px;
+  overflow-y:scroll;
+}
+
+#wordcontainer #wordlist {
+  position: absolute;
+  top:10px;
+  left:250px;
+  width: 520px;
+  height:350px;
+  display: inline-block;
+  list-style-type: none;
+  overflow-y:scroll;
+  background-color:rgb(230, 230,230);
+  padding: 4px;
+
+}
+
+#wordcontainer .title {
+  text-align: center;
+  padding-bottom: 8px;
+  font-weight: bold;
+}
+
+#wordcontainer .wordttitle {
+  display: inline-block;
+  width: 160px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#wordcontainer .active {
+  font-weight: bold;
+}
+
+
+#xaxis {
+  padding-top: 5px;
+}
+
+#xaxis p {
+  line-height: 10px;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+#ramp1 p {
+  line-height: 10px;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+#ramp2 p {
+  line-height: 10px;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+#widgets canvas {
+  float:none;
+  position: absolute;
+}
+
+.working {
+  position: absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .8;
+}
+
+.working .header {
+    position: absolute;
+    text-align: center;
+    font-size:30px;
+    color:white;
+    width:300px;
+    height:200px;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
+    z-index:20;
+    background-color: black;
+    z-index:10;
+
+}
+
+.seqtitle.reference-order {
+  color:red;
+  font-weight: bold;
+}
+
+.seqtitle.reference-color {
+  color:blue;
+  font-weight: bold;
+}
+
+.seqtitle.reference-order.reference-color {
+  color:#FF00FF;
+  font-weight: bold;
+}

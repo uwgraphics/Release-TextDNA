@@ -1,0 +1,87 @@
+<html>
+<head>
+	<style>
+
+		body {
+			background-color: black;
+		}
+		.wordcontainer {
+			position: absolute;
+			width: 600px;
+			height:300px;
+			top:50%;
+			left:50%;
+			margin:-150px 0 0 -250px;
+			background-color: white;
+		}
+
+		.wordcontainer .seqlist {
+			width: 200px;
+			height:250px;
+			position: absolute;
+			top:10px;
+			left:20px;
+			background-color: rgb(230, 230,230);
+			list-style-type: none;
+			padding: 4px;
+			overflow-y:scroll;
+		}
+
+		.wordcontainer .wordlist {
+			position: absolute;
+			top:10px;
+			left:250px;
+			width: 320px;
+			height:250px;
+			display: inline-block;
+			list-style-type: none;
+			overflow-y:scroll;
+			background-color:rgb(230, 230,230);
+			padding: 4px;
+
+		}
+
+		.wordcontainer .title {
+			text-align: center;
+			padding-bottom: 8px;
+			font-weight: bold;
+		}
+
+		.wordcontainer .wordttitle {
+			font-weight: bold;
+			display: inline-block;
+			width: 90px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wordcontainer">
+		<ul class="seqlist">
+			<div class="title">Sequences</div>
+			<li> SeqNameHereOk1 </li>
+			<li> SeqNameHereOk2 </li>
+			<li> SeqNameHereOk3 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+			<li> SeqNameHereOk4 </li>
+		</ul>
+		<ul class="wordlist">
+			<div class="title">Words</div>
+			<li> <div class="wordttitle">word1</div>| rank : 2, frequency : 11 </li>
+			<li> word2 value value value </li>
+			<li> word3 value value value </li>
+			<li> word4 value value value </li>
+			<li> word5 value value value </li>
+			<li> word6 value value value </li>
+			<li> word7 value value value </li>
+			<li> word8 value value value </li>
+			<li> word9 value value value </li>
+			<li> word1 value value value </li>
+		</ul>
+	</div>
+</body>
+</html>

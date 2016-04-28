@@ -1,0 +1,211 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>SS2.0.js</title>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="../static/ssLite.css"/>
+	</head>
+	<body>
+		<div id="widgets">
+			Color Mode<br/> <select id="colormode">
+        		<option value="default">default</option>
+            	<option value="average">average</option>
+        	</select><br/><br/>
+        	Color By<br/> <select id="color">
+        		<option value="2">rank</option>
+            	<option value="3">frequency</option>
+            	<option value="101">groupedFrequency</option>
+            	<option value="5">count</option>
+            	<option value="102">reference</option>
+        	</select><br/><br/>
+            Order By<br/> <select id="order">
+            	<option value="2">rank</option>
+            	<option value="3">frequency</option>
+            	<option value="11">groupedFrequency</option>
+            	<option value="5">count</option>
+            </select><br/><br/>
+            Match On<br/> <select id="datakey">
+            	<option value="0">word</option>
+            	<option value="2">rank</option>
+            	<option value="3">frequency</option>
+            	<option value="4">groupedFrequency</option>
+            	<option value="5">count</option>
+            </select><br/><br/>
+            Color Scheme<br/> <select id="colormap">
+                <option value="BLUE_YELLOW">Blue-Yellow Sequential</option>
+                <option value="RED_BLUE">Red-Blue Diverging</option>
+                <option value="PURPLE_ORANGE">Purple-Orange Diverging</option>
+                <option value="GREY">Grey</option>
+            </select><br/><br/>
+            Ramp Theme<br/> <select id="ramptheme">
+                <option value="RED_BLUE">Red-Blue Diverging</option>
+                <option value="BLUE_YELLOW">Blue-Yellow Sequential</option>
+                <option value="PURPLE_ORANGE">Purple-Orange Diverging</option>
+                <option value="GREY">Grey</option>
+            </select><br/><br/>
+			Inverted Coloring &nbsp&nbsp  <input id="reversecoloring"type="checkbox"/>
+            Reference Ordering<input id="refordering"type="checkbox"/>
+            <input id="search" placeholder="Enter Word Filter" type="test"/> <br>
+            <div id="xaxis"style="width:100%"> </div>
+            <div id="ramp1"style="width:100%;margin-top:3px;"> </div>
+            <div id="ramp2"style="width:100%"> </div>
+
+            <div id="histogram-container" class="hidden">
+            	<canvas id="histogram-background"></canvas>
+            	<canvas id="histogram"></canvas>
+            </div>
+        </div> 
+        <div class="sequencelist">
+        	<div id="zoomtitle">
+        	</div>
+        </div>
+		<div id="container">
+		<svg style="z-index:2;pointer-events:none">
+			 
+		</svg>
+	
+		</div>
+		
+
+
+		<div class="contextmenu">
+			<ul>
+				<li id="setreference"> Set Reference </li>
+				<li id="showwords"> Show Words </li>
+				<li id="clearmarks"> Clear Line Markings </li>
+			</ul>
+		</div>
+
+		<div id="worddisplay">
+			<div id="worddisplaybg"></div>
+			<div id="wordcontainer">
+				<ul id="seqlist">
+					<div class="title">Sequences</div>
+				</ul>
+				<ul id="wordlist">
+					<div class="title">Matches</div>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="working">
+			<div class="header">
+				<p>Working....</p>
+				
+			</div>
+		</div>
+		
+	</body>
+	<!-- Shaders -->
+    <script id="vertexshader" type="x-shader/x-vertex">
+		varying vec2 vUv;
+		void main() {
+			vUv = uv;
+			gl_Position = projectionMatrix *
+						  modelViewMatrix *
+						  vec4(position,1.0);
+		}
+    </script>
+    
+	 <script id="fragmentshader" type="x-shader/x-fragment">	
+	 //	precision highp float;
+		uniform sampler2D texture1;
+		uniform sampler2D texture2;
+		uniform sampler2D dataTex;
+		uniform sampler2D orderTex;
+		uniform float w;
+		uniform float opacity;
+		uniform float texWidth;
+		uniform float texHeight;
+		varying vec2 vUv;
+		 void main() {
+			vec4 data = texture2D(orderTex, vUv);
+			float pos = mod(floor(data[0] * w), w);
+			float index = pos;
+			vec2 dataLookup = vec2( mod(index, texWidth)/texWidth, floor(index/texHeight)/(texHeight) );
+			vec2 val = texture2D(dataTex, dataLookup).xy;
+			vec2 texLookup = vec2(val.x, 0.0);
+			if(val[1] == 0.0){
+				vec4 color = texture2D(texture1, texLookup);
+				gl_FragColor = vec4(color.xyz, 1.0 ) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
+			}else{
+				vec4 color = texture2D(texture2, texLookup);
+				gl_FragColor = vec4(color.xyz, 1.0 ) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
+			}
+
+			//gl_FragColor = vec4(dataLookup, 0.0, 1.0);
+			
+		}
+	</script>
+
+	<script id="wvs" type="x-shader/x-vertex">
+		attribute float w;
+		
+		varying vec2 vUv;
+		varying float dataW; 
+		void main() {
+			vUv = uv;
+			dataW = w;
+			gl_Position = projectionMatrix *
+						  modelViewMatrix *
+						  vec4(position,1.0);
+		}
+    </script>
+    
+	 <script id="wfs" type="x-shader/x-fragment">	
+		uniform sampler2D texture1;
+		uniform sampler2D texture2;
+		uniform float opacity;
+		uniform vec2 average1;
+		uniform vec2 average2;
+		
+		 void main() {
+		 	vec3 ramp1 = texture2D(texture1, vec2(average1.x, 0.0)).xyz * average1.y;
+		 	vec3 ramp2 = texture2D(texture2, vec2(average2.x, 0.0)).xyz * average2.y;
+		 	vec3 sum = ramp1 + ramp2;
+			gl_FragColor = vec4(sum, 1.0) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
+		}
+	</script>
+
+	<script id="zoomshader" type="x-shader/x-fragment">
+		uniform sampler2D texture1;
+		uniform sampler2D texture2;
+		uniform float weight;
+		uniform float index;
+		uniform float opacity;
+		 void main() {
+		 	if(index == 0.0){
+		 		gl_FragColor = texture2D(texture1, vec2(weight, 0.0)) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
+		 	}else{
+		 		gl_FragColor = texture2D(texture2, vec2(weight, 0.0)) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
+		 	}
+			
+		}
+
+	</script
+
+	<!-- End Shaders -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script src="http://threejs.org/build/three.min.js"></script> 
+    <script src="../static/gfx/dist/gfx.js"></script>
+    <script src="../static/utils/utilities.js"></script>
+	
+
+	<div style="width:500px;height:500px;background-color:red-blue;"></div>
+	<script type="text/javascript">
+		//testFile1
+		var params = window.location.href.split("?")[1];
+		var fileName;
+		if(params == undefined || params.length == 0){
+			fileName = "file1"
+		}else{
+			fileName = params.split("=")[1];
+			
+		}
+		var dataset = {{data | tojson }}
+		gfx.init($("#container"), dataset)
+
+	</script>
+</html>
