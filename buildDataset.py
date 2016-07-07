@@ -185,9 +185,33 @@ def build(fileptr):
     print "formatted data in " + str(datetime.datetime.now() - startTime)
     
     # Return the JSONified dataset
-    fname = fileptr.name[:fileptr.name.rindex(".")] + ".json"
+    fname = "data/json/"+fileptr.name[len(os.path.abspath(__file__))-2:fileptr.name.rindex(".")] + ".json"
     with open(fname, 'w') as outfile:
         json.dump(dataset, outfile)
+        
+    # Put the dataset in the list (referenced by the filename)
+    updateList(fileptr.name[len(os.path.abspath(__file__))-2:fileptr.name.rindex(".")]);
+    
+def updateList(fname):
+    flag = "<ul>Your Data:</ul>"
+    with open("app/templates/list.html", "r") as f:
+        lines = f.readlines();
+        print lines
+        f.close()
+        
+        # Find the right line
+        for idx in range(0, len(lines)):
+            l = lines[idx]
+            if (l.strip()==flag):
+                lines.insert(idx+1, "<ul><a href=\"viewer.html?file=" + fname + "\">" + fname + "</a></ul>\n")
+                break
+        
+        # Write the updated file
+        f = open("app/templates/list.html", "w")
+        lines = "".join(lines)
+        f.write(lines)
+        f.close()
+    
 
 
 

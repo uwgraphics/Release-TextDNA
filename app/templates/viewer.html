@@ -279,7 +279,7 @@
 			
 		}
 		var dataset;
-		$.get("../static/json/" + fileName + ".json", function (data) {
+		$.get("../data/json/" + fileName + ".json", function (data) {
 			dataset = JSON.parse( data )
 		}).done( function(){
 			gfx.init($("#container"), dataset)
