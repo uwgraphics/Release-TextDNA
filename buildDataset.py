@@ -193,7 +193,7 @@ def build(fileptr):
     updateList(fileptr.name[len(os.path.abspath(__file__))-2:fileptr.name.rindex(".")]);
     
 def updateList(fname):
-    flag = "<ul>Your Data:</ul>"
+    flag = "<ul>My Data:</ul>"
     with open("app/templates/list.html", "r") as f:
         lines = f.readlines();
         print lines
