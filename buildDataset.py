@@ -185,7 +185,7 @@ def build(fileptr):
     print "formatted data in " + str(datetime.datetime.now() - startTime)
     
     # Return the JSONified dataset
-    fname = "data/json/"+fileptr.name[len(os.path.abspath(__file__))-2:fileptr.name.rindex(".")] + ".json"
+    fname = "app/static/json/"+fileptr.name[len(os.path.abspath(__file__))-2:fileptr.name.rindex(".")] + ".json"
     with open(fname, 'w') as outfile:
         json.dump(dataset, outfile)
         
