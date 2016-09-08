@@ -2,9 +2,9 @@
 
 Inspired by genome sequencing alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
 
-Read more about TextDNA: D.A. Szafir, D. Stuffer, Y. Sohail, & M. Gleicher. “TextDNA: Visualizing Word Usage Patterns with Configurable Colorfields.” Computer Graphics Forum. 35 (3), 2016. (In the Proceedings of the 2016 Eurographics/IEEE Conference on Visualization) [PDF](http://graphics.cs.wisc.edu/Papers/2016/ASSG16/TextDNA.pdf)
+Read more about TextDNA: D.A. Szafir, D. Stuffer, Y. Sohail, & M. Gleicher. “TextDNA: Visualizing Word Usage Patterns with Configurable Colorfields.” *Computer Graphics Forum.* 35 (3), 2016. (In the Proceedings of the 2016 Eurographics/IEEE Conference on Visualization) [PDF](http://graphics.cs.wisc.edu/Papers/2016/ASSG16/TextDNA.pdf)
 
-**Program Requirements:** Chrome, and Python 2.7, [XAMPP](http://sourceforge.net/projects/xampp/)
+**Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/)
 
 Setup
 -----
@@ -28,7 +28,7 @@ Visualizing English Print provides two Python scripts to generate datasets from 
 
 **textDNACSVGenerator.py:** This python script reads in plain text files and generates a CSV dataset of their contents in the Release-TextDNA/data/csv/ folder of the TextDNA download. The script is flexible and has settings to generate either raw text or n-gram datasets. By default, the script takes a folder of plain text files and yields a data sequence per text file. There is a flag (--folder_sequences) that treats subfolders as sequences rather than single text files. For example, one can sort texts into folders by decades and have the script generate n-grams per decade by treating each subfolder as an entire data sequence.
 
-*usage:* textDNACSVGenerator.py corpus_path output_dir <mode>
+*usage:* textDNACSVGenerator.py corpus_path output_dir &lt;mode&gt;
 
 positional arguments
  * corpus_path: path to corpus to tag relative to the location of this script
