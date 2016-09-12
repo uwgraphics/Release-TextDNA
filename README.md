@@ -2,6 +2,8 @@
 
 Inspired by genome sequencing alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
 
+TextDNA was made possible by support from the Andrew W. Mellon Foundation grant for the Visualizing English Project and the National Science Foundation Comparisons award (NSF Award IIS-1162037). TextDNA is released under a BSD license.
+
 Read more about TextDNA: D.A. Szafir, D. Stuffer, Y. Sohail, & M. Gleicher. “TextDNA: Visualizing Word Usage Patterns with Configurable Colorfields.” *Computer Graphics Forum.* 35 (3), 2016. (In the Proceedings of the 2016 Eurographics/IEEE Conference on Visualization) [PDF](http://graphics.cs.wisc.edu/Papers/2016/ASSG16/TextDNA.pdf)
 
 **Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/)
@@ -63,6 +65,23 @@ positional argument
 
 *Example Unix/Linux Command*
  * python buildDataset.py data/csv/Shakespeare_Globe_word_sequence.csv
+
+Sample Datasets
+---------------
+VEP includes 6 sample datasets with this TextDNA download.
+
+1. Simple Test Dataset
+2. Shakespeare Folio (N-Grams)
+3. Shakespeare Folio (Raw Text)
+4. Top 200 Google N-Grams (1660-2009)
+5. Top 1,000 Google N-Grams (1660-2009)
+6. Top 5,000 Google N-Grams (1660-2009)
+
+Read more about the datasets from the [TextDNA project site](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
+
+Credit
+------
+Credit for TextDNA belongs to Danielle Albers Szafir, who originally developed the program and website documentation. The TextDNA user interface was further developed by Yusef Sohail under the direction of Szafir. The two fine-tuned the system for raw text in consultation with Deidre Stuffer, who provided documentation for raw text manipulation and generated the test dataset with documentation to help users learn TextDNA functions. Erin Winter provided scripts to generate csv datasets from plaintext input for the public release.
 
 Contact
 -------
