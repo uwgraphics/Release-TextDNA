@@ -1,26 +1,23 @@
 # TextDNA
 
-Inspired by genome sequencing alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
+Inspired by genome sequencing alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. This download comes with Python 2.7 scripts for users to curate their own TextDNA datasets from ASCII and pure UTF-8 plain text files. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
 
 TextDNA was made possible by support from the Andrew W. Mellon Foundation grant for the Visualizing English Project and the National Science Foundation Comparisons award (NSF Award IIS-1162037). TextDNA is released under a BSD license.
 
 Read more about TextDNA: D.A. Szafir, D. Stuffer, Y. Sohail, & M. Gleicher. “TextDNA: Visualizing Word Usage Patterns with Configurable Colorfields.” *Computer Graphics Forum.* 35 (3), 2016. (In the Proceedings of the 2016 Eurographics/IEEE Conference on Visualization) [PDF](http://graphics.cs.wisc.edu/Papers/2016/ASSG16/TextDNA.pdf)
 
-**Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/)
+**Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/). Will run slow on systems without dedicated graphics cards.
 
 Setup
 -----
 1. Download and install XAMPP, a free virtual environment that runs an Apache server on your local machine.
 2. When XAMPP is successfully installed, download TextDNA and put it in the htdocs folder of the XAMPP installation. This step allows TextDNA to run on the server, which will let you interact with your datasets through a browser.
-  * Windows Path: C:\xampp\htdocs
-  * Mac Path:
 
 Running TextDNA
 --------------
 1. Launch the XAMPP control panel and start the Apache server.
 2. Open your chrome browser and enter the path to the TextDNA html viewer file within htdocs
-  * Windows: http://localhost/Release-TextDNA/app/templates/list.html
-  * Mac: 
+  * http://localhost/Release-TextDNA/app/templates/list.html
 3. Select the dataset you wish to view.
 4. When you are finished with TextDNA, exit the browser and stop the server through the XAMPP control panel.
 
