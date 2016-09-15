@@ -6,7 +6,7 @@ TextDNA was made possible by support from the Andrew W. Mellon Foundation grant 
 
 Read more about TextDNA: D.A. Szafir, D. Stuffer, Y. Sohail, & M. Gleicher. “TextDNA: Visualizing Word Usage Patterns with Configurable Colorfields.” *Computer Graphics Forum.* 35 (3), 2016. (In the Proceedings of the 2016 Eurographics/IEEE Conference on Visualization) [PDF](http://graphics.cs.wisc.edu/Papers/2016/ASSG16/TextDNA.pdf)
 
-**Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/). Will run slow on systems without dedicated graphics cards.
+**Program Requirements:** Chrome, and Python 2.7, and [XAMPP](http://sourceforge.net/projects/xampp/). Will run slowly on systems without dedicated graphics cards.
 
 Setup
 -----
