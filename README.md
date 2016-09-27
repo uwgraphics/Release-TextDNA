@@ -1,6 +1,6 @@
 # TextDNA
 
-Inspired by genome sequencing alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. This download comes with Python 2.7 scripts for users to curate their own TextDNA datasets from ASCII and pure UTF-8 plain text files. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
+Inspired by genome sequence alignment, TextDNA allows users to explore and analyze word usage across text collections of varying scale. This download comes with Python 2.7 scripts for users to curate their own TextDNA datasets from ASCII and pure UTF-8 plain text files. Explore live TextDNA datasets at the [website](http://graphics.cs.wisc.edu/Vis/SequenceSurveyor/TextDNA.html).
 
 TextDNA was made possible by support from the Andrew W. Mellon Foundation grant for the Visualizing English Project and the National Science Foundation Comparisons award (NSF Award IIS-1162037). TextDNA is released under a BSD license.
 
@@ -78,7 +78,9 @@ Read more about the datasets from the [TextDNA project site](http://graphics.cs.
 
 Credit
 ------
-Credit for TextDNA belongs to Danielle Albers Szafir, who originally developed the program and website documentation. The TextDNA user interface was further developed by Yusef Sohail under the direction of Szafir. The two fine-tuned the system for raw text in consultation with Deidre Stuffer, who provided documentation for raw text manipulation and generated the test dataset with documentation to help users learn TextDNA functions. Erin Winter provided scripts to generate csv datasets from plaintext input for the public release.
+Credit for TextDNA belongs to Danielle Albers Szafir, who originally developed the program and website documentation under the guidance of Michael Gleicher and Robin Valenza. The TextDNA user interface was further developed by Yusef Sohail under the direction of Szafir. The two fine-tuned the system for raw text in consultation with Deidre Stuffer, who provided documentation for raw text manipulation and generated the test dataset with documentation to help users learn TextDNA functions. Erin Winter provided scripts to generate csv datasets from plaintext input for the public release.
 
 Contact
 -------
+Danielle Albers Szafir
+danielle.szafir@colorado.edu
