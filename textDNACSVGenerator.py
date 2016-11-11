@@ -85,8 +85,6 @@ def textDNA(args):
                                     bad_files.append(f_path)
                     ngramFormat(corpusNgramCounts=sequenceNgramCounts, documentNgramCounts=sequenceDocumentCounts, name=sequenceName, csvwriter=w)
     else:
-        documentNgramCounts = defaultdict(int)  # {word : # of documents in which word appears}
-        corpusNgramCounts = defaultdict(int)  # {word : # of counts in corpus}
         if mode == "ngram":
             print("Loading sequence " + os.path.basename(corpus_path))
         for dirpath, subdirs, files in os.walk(corpus_path):
@@ -94,19 +92,22 @@ def textDNA(args):
                 if '.txt' in file:
                     filepath = os.path.join(dirpath, file)
                     try:
+                        docCounts = defaultdict(int)
+                        seqCounts = defaultdict(int)
                         tokens = tokenizeText(filepath, tokenizer)
                         #process out punctuation
                         tokens = ngramProcess(tokens)
                         # update corpus dictionaries
-                        docCounts = ngramUpdate(tokens, documentNgramCounts, corpusNgramCounts)
+                        ngramUpdate(tokens, docCounts, seqCounts)
                         if mode == "word_sequence":
                             print("Loading sequence " + os.path.basename(filepath))
                             wordSeqFormat(tokens, docCounts, output_dir, os.path.basename(filepath), w)
+                        if mode == "ngram":
+                            ngramFormat(documentNgramCounts=docCounts, corpusNgramCounts=seqCounts,
+                                        name=os.path.basename(filepath), csvwriter=w)
                     except NotImplementedError:
                         bad_files.append(filepath)
-        # assumes all ngrams form one sequence unless folder_sequence argument is given
-        if mode == "ngram":
-            ngramFormat(documentNgramCounts=documentNgramCounts, corpusNgramCounts=corpusNgramCounts, name=os.path.basename(corpus_path), csvwriter=w)
+
     print("Completed textDNA processing of corpus " + os.path.basename(corpus_path))
     if bad_files != []:
         print("Unable to ngram the following files" + str(bad_files))
