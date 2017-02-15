@@ -54,7 +54,7 @@
                <option value="RED">Red Sequential</option>
                <option value="BLUE">Blue Sequential</option>
                <option value="GREY">Grey</option>
-            
+
                 <option disabled>──────────</option>
 
                <option value="BROWN_BLUE_GREEN">Brown-Blue-Green Diverging</option>
@@ -63,9 +63,9 @@
                <option value="PURPLE_ORANGE">Purple-Orange Diverging</option>
                <option value="RED_BLACK">Red-Black Diverging</option>
                <option value="RED_BLUE">Red-Blue Diverging</option>
-            
+
                 <option disabled>──────────</option>
-            
+
                 <option value="CATEGORICAL">Categorical</option>
 
 
@@ -80,7 +80,7 @@
                <option value="RED">Red Sequential</option>
                <option value="BLUE">Blue Sequential</option>
                <option value="GREY">Grey</option>
-            
+
                 <option disabled>──────────</option>
 
                <option value="BROWN_BLUE_GREEN">Brown-Blue-Green Diverging</option>
@@ -109,24 +109,24 @@
 
             <div id="colorlegend-container">
             </div>
-           
+
 
             <div id="histogram-container" class="hidden">
             	<canvas id="histogram-background"></canvas>
             	<canvas id="histogram"></canvas>
             </div>
-        </div> 
+        </div>
         <div class="sequencelist">
         	<div id="zoomtitle">
         	</div>
         </div>
 		<div id="container">
 		<svg style="z-index:2;pointer-events:none">
-			 
+
 		</svg>
-	
+
 		</div>
-		
+
 
 
 		<div class="contextmenu">
@@ -150,14 +150,14 @@
 				</ul>
 			</div>
 		</div>
-	
+
 		<div class="working">
 			<div class="header">
 				<p>Working....</p>
-				
+
 			</div>
 		</div>
-		
+
 	</body>
 	<!-- Shaders -->
     <script id="vertexshader" type="x-shader/x-vertex">
@@ -169,8 +169,8 @@
 						  vec4(position,1.0);
 		}
     </script>
-    
-	 <script id="fragmentshader" type="x-shader/x-fragment">	
+
+	 <script id="fragmentshader" type="x-shader/x-fragment">
 	 //	precision highp float;
 		uniform sampler2D texture1;
 		uniform sampler2D texture2;
@@ -188,7 +188,7 @@
 			vec2 dataLookup = vec2( mod(index, texWidth)/texWidth, floor(index/texHeight)/(texHeight) );
 
 
-			
+
 			vec2 val = texture2D(dataTex, dataLookup).xy;
 			vec2 texLookup = vec2(val.x, 0.0);
 			if(val[1] == 0.0){
@@ -202,7 +202,7 @@
 			//gl_FragColor = vec4(texLookup.x, 0.0, 0.0, 1.0);
 
 			//gl_FragColor = vec4(dataLookup, 0.0, 1.0);
-			
+
 		}
 	</script>
 
@@ -227,9 +227,9 @@
 
 	<script id="wvs" type="x-shader/x-vertex">
 		attribute float w;
-		
+
 		varying vec2 vUv;
-		varying float dataW; 
+		varying float dataW;
 		void main() {
 			vUv = uv;
 			dataW = w;
@@ -238,14 +238,14 @@
 						  vec4(position,1.0);
 		}
     </script>
-    
-	 <script id="wfs" type="x-shader/x-fragment">	
+
+	 <script id="wfs" type="x-shader/x-fragment">
 		uniform sampler2D texture1;
 		uniform sampler2D texture2;
 		uniform float opacity;
 		uniform vec2 average1;
 		uniform vec2 average2;
-		
+
 		 void main() {
 		 	vec3 ramp1 = texture2D(texture1, vec2(average1.x, 0.0)).xyz * average1.y;
 		 	vec3 ramp2 = texture2D(texture2, vec2(average2.x, 0.0)).xyz * average2.y;
@@ -266,17 +266,17 @@
 		 	}else{
 		 		gl_FragColor = texture2D(texture2, vec2(weight, 0.0)) * opacity - (1.0-opacity) * .3 *  vec4(1.0, 1.0, 1.0, 0.0);
 		 	}
-			
+
 		}
 
 	</script>
 
 	><!-- End Shaders -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="http://threejs.org/build/three.min.js"></script> 
+	<script src="http://threejs.org/build/three.min.js"></script>
     <script src="../static/gfx/dist/gfx.js"></script>
     <script src="../static/utils/utilities.js"></script>
-	
+
 
 	<div style="width:500px;height:500px;background-color:red-blue;"></div>
 	<script type="text/javascript">
@@ -287,11 +287,11 @@
 			fileName = "file1"
 		}else{
 			fileName = params.split("=")[1];
-			
+
 		}
 		var dataset;
 		$.get("../../data/json/" + fileName + ".json", function (data) {
-			dataset = data; //JSON.parse( data )
+			dataset = JSON.parse( data );
 		}).done( function(){
 			gfx.init($("#container"), dataset)
 		});
