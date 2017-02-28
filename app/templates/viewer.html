@@ -291,7 +291,12 @@
 		}
 		var dataset;
 		$.get("../../data/json/" + fileName + ".json", function (data) {
-			dataset = JSON.parse( data );
+			try {
+				dataset = JSON.parse( data );
+			}
+			catch(error) {
+				dataset = data;
+			}
 		}).done( function(){
 			gfx.init($("#container"), dataset)
 		});
